@@ -30,19 +30,19 @@ const WaitlistForm = () => {
   };
 
   return (
-    <section id="waitlist" className="py-24 px-6 bg-ivory-dark/30">
+    <section id="waitlist" className="py-16 md:py-24 px-4 md:px-6 bg-ivory-dark/30">
       <div className="max-w-xl mx-auto text-center">
-        <div className="flex items-center justify-center gap-4 mb-8">
-          <div className="w-12 h-px bg-gold/30" />
+        <div className="flex items-center justify-center gap-4 mb-6 md:mb-8">
+          <div className="w-10 md:w-12 h-px bg-gold/30" />
           <Star className="w-3 h-3 text-gold" fill="currentColor" />
-          <div className="w-12 h-px bg-gold/30" />
+          <div className="w-10 md:w-12 h-px bg-gold/30" />
         </div>
 
-        <h2 className="font-serif text-2xl md:text-3xl text-foreground tracking-wide mb-4">
+        <h2 className="font-serif text-xl md:text-2xl lg:text-3xl text-foreground tracking-wide mb-3 md:mb-4">
           Be the First to Know
         </h2>
 
-        <p className="text-muted-foreground font-light mb-10 max-w-sm mx-auto">
+        <p className="text-muted-foreground text-sm font-light mb-8 md:mb-10 max-w-sm mx-auto px-4">
           Join our exclusive waitlist for early access and special offers.
         </p>
 
@@ -59,31 +59,33 @@ const WaitlistForm = () => {
             </p>
           </div>
         ) : (
-          <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-4 max-w-md mx-auto">
-            <div className="flex-1">
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  if (error) setError("");
-                }}
-                placeholder="Enter your email"
-                className="elorra-input w-full"
+          <form onSubmit={handleSubmit} className="flex flex-col gap-3 max-w-md mx-auto px-2">
+            <div className="flex flex-col sm:flex-row gap-3">
+              <div className="flex-1">
+                <input
+                  type="email"
+                  value={email}
+                  onChange={(e) => {
+                    setEmail(e.target.value);
+                    if (error) setError("");
+                  }}
+                  placeholder="Enter your email"
+                  className="elorra-input w-full text-sm"
+                  disabled={isLoading}
+                  aria-label="Email address"
+                />
+              </div>
+              <button 
+                type="submit" 
+                className="elorra-button whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed text-xs md:text-sm"
                 disabled={isLoading}
-                aria-label="Email address"
-              />
-              {error && (
-                <p className="text-sm text-destructive mt-2 text-left">{error}</p>
-              )}
+              >
+                {isLoading ? "..." : "Get Early Access"}
+              </button>
             </div>
-            <button 
-              type="submit" 
-              className="elorra-button whitespace-nowrap disabled:opacity-50 disabled:cursor-not-allowed"
-              disabled={isLoading}
-            >
-              {isLoading ? "..." : "Get Early Access"}
-            </button>
+            {error && (
+              <p className="text-sm text-destructive text-left">{error}</p>
+            )}
           </form>
         )}
       </div>
