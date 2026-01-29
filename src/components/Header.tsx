@@ -10,7 +10,7 @@ const Header = () => {
         <img 
           src={elorraLogo} 
           alt="ELORRA" 
-          className="h-16 md:h-24 lg:h-28 w-auto object-contain animate-fade-in"
+          className="h-20 md:h-32 lg:h-40 w-auto object-contain animate-fade-in"
         />
       </div>
       
